@@ -183,7 +183,7 @@ if __name__ == "__main__":
 	parser.add_argument("--output_path", type=str, default="results/Model_claude/safetybench/main_v2.jsonl")
 	parser.add_argument("--tmpfile_location", type=str, default="results/Model_claude/safetybench/")
 	parser.add_argument("--workers", type=int, default=6)
-	parser.add_argument("--local", action="store_true", default=True, help="Use local dataset instead of HuggingFace")
+	parser.add_argument("--local", action="store_true", default=False, help="Use local dataset instead of HuggingFace")
 	parser.add_argument("--dataset_type", type=str, default="SAFETYBENCH")
 	args = parser.parse_args()
 
