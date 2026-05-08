@@ -1,25 +1,27 @@
 # Numerical_Visual_Distraction_Attacks
 Code for Master Thesis
 
-# Contents 
+# Contents
+### Important Requirement: 
+If using a SafetyBench dataset the use of a local combined dataset is nessecary as safetybench saves its data in multiple subsets divided by category and again image type. The base version can be created via the create_combined_safetybench_dataset() method in Util.py with other attack datasets beeing able to be created from that using the functions in localize_and_modify_dataset.py.
 
 ## Attack.py
 Contains the code for the attacks on Qwen3-VL And llava-v1.6, the specific model and dataset can be selected via the console arguments and other important parameters can be ajusted similarly
 
 ## Attack_Claude.py
 Contains the code to attack Claude Sonnet 4.6 via the API using a multithreading aproach. Requires local Environmetal variable "ANTHROPIC_API_KEY" to be set to a valid Claude API Key.
-Parameters:
-### --dataset_path
+### Parameters:
+#### --dataset_path
 Path to the dataset that should be used. Example: "./Data/SafetyBench_Main_V2/"
-### --output_path
+#### --output_path
 Path where the output .jsonl file should be saved. Example: "./results/Model_claude/safetybench/main_v2.jsonl"
-### --tmpfile_location
+#### --tmpfile_location
 The programm will save thread results in temporary files taht are deleted upon sucessfull completion. This allows for the specification of where these files will be located. Example: "./results/Model_claude/safetybench/"
-### --workers
+#### --workers
 Number of threads that are to be used. Default value at 6.
-### --local
+#### --local
 Flag to include if a locally saved dataset is used instead of one from HuggingFace
-### --dataset_type
+#### --dataset_type
 Specification of the used dataset type. To be set to either "SAFETYBENCH" or "HADES" depending on which dataset is used.
 
 ## Attack_GPT-5.py
