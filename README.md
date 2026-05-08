@@ -31,4 +31,4 @@ Contains the code to attack GPT-5 via the API using a multithreading aproach. Re
 includes the code for the evalaution of model outputs via GPT-5 as a judge evaluating binary harmfulness and a toxicity score respectively
 
 ## Data_Evaluation.py
-contains evaluation code for the judgements and to 
+contains evaluation code to use the judgements to Calculate Toxicity scores, ASR and TSR
