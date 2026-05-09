@@ -28,7 +28,17 @@ Specification of the used dataset type. To be set to either "SAFETYBENCH" or "HA
 Contains the code to attack GPT-5 via the API using a multithreading aproach. Requires local Environmetal variable "OPENAI_API_KEY" to be set to a valid OpenAI API Key. Contains the exact same parameters for selection as Attack_Claude.py.
 
 ## Judge_Harmfulness.py and Judge_Toxicity.py
-includes the code for the evalaution of model outputs via GPT-5 as a judge evaluating binary harmfulness and a toxicity score respectively
+includes the code for the evalaution of model outputs via GPT-5 as a judge evaluating binary harmfulness and a toxicity score respectively. Neither evaluation is relying on the other. both have the following same commandline arguments
+### Parameters:
+#### --input_path
+Path to the .jsonl file that contains the model responses. 
+#### --output_path
+Path where the output .jsonl file should be saved. Output file will contain all data of the input file combined with the additiona judgement
+#### --tmpfile_location
+The programm will save thread results in temporary files taht are deleted upon sucessfull completion. This allows for the specification of where these files will be located.
+#### --workers
+Number of threads that are to be used. Default value at 6.
+
 
 ## Data_Evaluation.py
 contains evaluation code to use the judgements to Calculate Toxicity scores, ASR and TSR
