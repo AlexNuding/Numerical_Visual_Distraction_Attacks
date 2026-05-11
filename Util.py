@@ -2,7 +2,7 @@ import json
 import json
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable, axes_size
-from datasets import load_from_disk, load_dataset, Dataset
+from datasets import load_dataset, DatasetDict, Dataset, load_from_disk
 from difflib import SequenceMatcher
 from itertools import combinations
 
@@ -309,6 +309,25 @@ def create_combined_safetybench_dataset():
 	print(len(combined_dataset))
 	new_dataset = Dataset.from_list(combined_dataset)
 	new_dataset.save_to_disk("./Data/SafetyBench")
+
+def remove_math_instruction(base_dataset, new_dataset):
+	dataset = load_from_disk(base_dataset)["test"]
+	split = [item for item in dataset if item['step'] == 5]
+
+	new_splits = {}
+	modified_samples = []
+
+	for sample in split:
+		instr = sample["instruction"]
+		new_sample = dict(sample)
+
+		new_instruction = ""
+
+		new_sample["instruction"] = new_instruction
+		modified_samples.append(new_sample)
+
+	new_splits["test"] = Dataset.from_list(modified_samples)
+	DatasetDict(new_splits).save_to_disk(new_dataset)
 
 
 if __name__ == "__main__":

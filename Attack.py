@@ -167,6 +167,11 @@ def evaluate(args):
 			new_inst = item['question']
 
 		if args.basic: #only for hades
+			if model_id == "llava-hf/llava-v1.6-mistral-7b-hf":
+				response = generate(processor, model, new_inst, image, max_new_tokens=args.max_new_tokens)
+			elif model_id == "Qwen/Qwen3-VL-8B-Instruct-FP8":
+				response = generate_qwen(processor, model, new_inst, image, max_new_tokens=args.max_new_tokens)
+
 			if args.ensure_accurate_OCR and item['keywords'] not in response:
 				for _ in range(args.max_attempts):
 					if model_id == "llava-hf/llava-v1.6-mistral-7b-hf":
@@ -184,7 +189,7 @@ def evaluate(args):
 				"step": item['step'],
 				"category": item['category'],
 				"instruction": item['instruction'],
-				"response": response
+				"response": [response]
 			}	
 		else:
 			responses = []
